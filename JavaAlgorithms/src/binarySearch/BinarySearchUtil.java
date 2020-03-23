@@ -1,3 +1,5 @@
+package binarySearch;
+
 public class BinarySearchUtil {
 
     public static <T extends Comparable<T>> int binarySearch(T[] elements, T element) {
@@ -23,13 +25,6 @@ public class BinarySearchUtil {
         return -1;
     }
 
-    public static void main(String[] args) {
-        Integer[] elements = new Integer[]{5, 20, 21, 22, 34, 50, 100, 1000, 10002};
-        System.out.println(binarySearch(elements,50));
-        System.out.println(binarySearch(elements,5));
-        System.out.println(binarySearch(elements,10002));
-        System.out.println(binarySearch(elements,10005));
-        System.out.println(binarySearch(elements,-1));
-    }
+
 
 }
