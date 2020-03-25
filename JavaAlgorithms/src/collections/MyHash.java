@@ -77,6 +77,18 @@ public class MyHash<K,V> {
         return get(key) != null;
     }
 
+    public Set<K> getKeys(){
+        Set<K> keys = new HashSet<>();
+
+        for (Set<HashEntry<K, V>> entries : elements) {
+            for (HashEntry<K, V> entry : entries) {
+                keys.add(entry.getKey());
+            }
+        }
+
+        return keys;
+    }
+
     private static class HashEntry<K,V>{
         private final K key;
         private final V value;
