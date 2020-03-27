@@ -1,12 +1,12 @@
-package chapter1;
+package chapter2;
 
 public class HighArray<E extends Comparable<E>> {
 
-    private final E[] elements;
+    protected E[] elements;
 
-    private final int size;
+    protected final int size;
 
-    private int nextPos = 0;
+    protected int nextPos = 0;
 
     @SuppressWarnings("unchecked")
     public HighArray(int size) {
