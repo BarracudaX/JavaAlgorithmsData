@@ -1,5 +1,8 @@
 package chapter2;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class HighArray<E extends Comparable<E>> {
 
     protected E[] elements;
@@ -15,6 +18,7 @@ public class HighArray<E extends Comparable<E>> {
         }
         this.size = size;
 
+        //The elements of the array are all going to be of type that extends Comparable
         this.elements = (E[]) new Comparable[size];
     }
 
@@ -29,12 +33,8 @@ public class HighArray<E extends Comparable<E>> {
     }
 
     public boolean search(E element) {
-        for (E e : elements) {
-            if (element.equals(e)) {
-                return true;
-            }
-        }
-        return false;
+        return Arrays.stream(elements,0,nextPos)
+                .anyMatch(e -> e.equals(element));
     }
 
     public void delete(E element) {
@@ -62,9 +62,8 @@ public class HighArray<E extends Comparable<E>> {
     }
 
     public void display(){
-        for (int i = 0 ; i < nextPos ; i++) {
-            System.out.print(elements[i]+",");
-        }
+        Arrays.stream(elements,0,nextPos)
+                .forEach(e -> System.out.print(e+","));
         System.out.println("\n");
     }
 
@@ -129,16 +128,9 @@ public class HighArray<E extends Comparable<E>> {
 
     }
 
-    public int howManyDuplicates(E element) {
-        int count = -1;
-
-        for (E e : elements) {
-            if (element.equals(e)) {
-                count = count + 1;
-            }
-        }
-
-        return count;
+    public long howManyDuplicates(E element) {
+        return Arrays.stream(elements, 0, nextPos)
+                .filter(e -> e.equals(element)).count() - 1;
     }
 
     public int getNumberOfElements() {

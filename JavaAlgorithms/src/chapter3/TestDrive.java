@@ -1,5 +1,8 @@
 package chapter3;
 
+import chapter6.MergeSort;
+
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 public class TestDrive {
@@ -14,6 +17,8 @@ public class TestDrive {
 
         InsertionArray<Integer> insertionArray = new InsertionArray<>(maxSize);
 
+        Integer[] mergeArray = new Integer[maxSize];
+
         for (int i = 0; i < maxSize; i++) {
 
             int random = (int) (Math.random() * maxSize);
@@ -21,8 +26,20 @@ public class TestDrive {
             bubbleArray.insert(random);
             selectionArray.insert(random);
             insertionArray.insert(random);
-
+            mergeArray[i] = random;
         }
+
+        System.out.println("Staring Merge Sort...");
+
+        long mergeNanoStr = System.nanoTime();
+
+        MergeSort.sort(mergeArray);
+
+        long mergeNanoEnd = System.nanoTime();
+
+        System.out.println("Merge Sort Took : "+(mergeNanoEnd - mergeNanoStr)+" nanoseconds\n");
+
+        System.out.println(isSorted(mergeArray));
 
         System.out.println("Starting bubble sort...");
 
@@ -63,4 +80,13 @@ public class TestDrive {
 
     }
 
+    public static <T extends Comparable<T>> boolean isSorted(T[] elements) {
+        for (int i = 0; i < elements.length - 1; i++) {
+            if (elements[i].compareTo(elements[i + 1]) > 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

@@ -12,6 +12,7 @@ public class Deque<E> {
 
     private int tail = 0;
 
+    @SuppressWarnings("unchecked")
     public Deque(int size) {
         this.size = size;
         this.elements = (E[]) new Object[size];
